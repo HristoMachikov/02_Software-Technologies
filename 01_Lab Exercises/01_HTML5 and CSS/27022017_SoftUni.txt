@@ -1,0 +1,39 @@
+HTML не се компилира
+
+<h1>Titel</h1> наи-голямо заглавие
+<h2>SubTitel</h2>
+<p>SubTitelParagraph</p>
+
+<img /> самозатварящ се таг
+
+<!DOCTYPE html> - казваме на браузара какви неща съдържа (парсваи нещата в формат HTML5)
+<html>
+	<head> -държи неща които не се показват
+		<title> My Tytle</title>
+		<body> - държи неща които се показват
+			<nav>.....</nav> държи линкове
+			<aside>...</aside> държи не важни неща(реклами и тн.)
+			<section>...</section>
+
+		</body>
+
+	</head>
+</html>
+
+<strong> </strong> - таг които дудебелява текста
+
+<br /> брейква на нов ред
+<em></em> - малко по-важен текст
+<ul>
+
+Hyperlinks - неща които сочат към други страници
+
+HTML Forms
+Ctrl+Space
+<form> </form>
+
+paint.net
+<div></div> - заема цялото разтояние
+<span></span>
+
+#,class,tag
