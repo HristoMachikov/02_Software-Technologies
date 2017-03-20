@@ -1,0 +1,70 @@
+nodjs 7.7.3
+v conzolata: note
+
+при събиране на стрингове или цифри като стрингове да се внимава
+Alt+Enter - ver.6
+
+let, var -дефинират променливи
+let - по нова променлива от var
+;  в края на реда не е задължителна
+
+let num1 = document.getElementById('num1').value
+<script>
+
+debugger;
+F10 - Sources
+parseInt, Number - конвертира от стринг към число;
+firstNumber=Number(firstNumber)
+
+document.getElementById('result').innerHTML = sum
+
+console.log = return
+
+jsFUCK
+[first, second] = [second, first] слапва 
+
+args=args.map(Number); ==args=args.Select(intPars)
+args=args[0].split('').map(Number);
+
+console.log екзекютва true
+
+number=number.toString();
+where- filter(x=>x>10); - ерол функция (вместо ламда)
+filter(function(x) {return x>10}) -анонимна функция
+(function () {console.let(5)}) (); ifi функция;
+
+scolp-a на var e function
+
+let obj={name: 'Ivan', '12 3': 12};
+obj.name
+obj['name']='Pesho';
+
+let arr=[];
+
+let obj={name: 'Ivan', age: 12};
+delete obj.age - премахва пропарито изцяло
+
+obj.age = undefined - хаква пропартито но не го премахва от обекта;
+
+функ, масив и обект са обектилет 
+
+
+
+JSON.stringify
+JSON.parse
+
+17.10
+
+
+for(in)- връща индекси
+for(of) - връща стойности
+
+let arr.push(5); -слага 5 отзад
+let arr.push(5);-маха 5 отзад
+
+let arr.splice(5, 1, 100, 200);  -от инд.5 маха 1вкл. и добавя 100 и 200
+
+args=args.map(Number).sort((a,b) => b-a); ako b-a>0 -b e predi a
+
+let words = text.split(/\W+/);
+let words = text.split(new Regex'\W+');

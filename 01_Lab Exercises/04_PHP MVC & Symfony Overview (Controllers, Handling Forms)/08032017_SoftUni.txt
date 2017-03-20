@@ -1,0 +1,5 @@
+Controller pozvolqva Actions -> Create Update Delete Edit
+
+https://symfony.com/
+
+CalculatorType::class - вземи името на този клас;

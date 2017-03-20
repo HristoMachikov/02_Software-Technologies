@@ -1,0 +1,8 @@
+PHP 7.1.1 
+XAMPP - Skype - Connection - да се махне Port 80
+
+Tools -> Save as Live Tamplate....->Abriviations
+$INDEX $LIMIT
+{
+$END$
+}
