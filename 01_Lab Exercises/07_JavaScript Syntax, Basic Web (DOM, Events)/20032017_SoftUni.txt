@@ -31,7 +31,7 @@ console.log екзекютва true
 number=number.toString();
 where- filter(x=>x>10); - ерол функция (вместо ламда)
 filter(function(x) {return x>10}) -анонимна функция
-(function () {console.let(5)}) (); ifi функция;
+(function () {console.let(5)}) (); iife функция;
 
 scolp-a на var e function
 
@@ -68,3 +68,5 @@ args=args.map(Number).sort((a,b) => b-a); ako b-a>0 -b e predi a
 
 let words = text.split(/\W+/);
 let words = text.split(new Regex'\W+');
+
+iter - itar = for
