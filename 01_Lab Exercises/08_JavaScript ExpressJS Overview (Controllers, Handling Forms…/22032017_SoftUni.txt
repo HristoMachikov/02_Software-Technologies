@@ -1,0 +1,12 @@
+const - променлива която не се променя
+require - извиква и зпълнява други файлове
+npm instal express
+node package managment 
+
+Ctrl + C - спира require
+Express.js
+получавам от юзера / връщам към сървъра
+get / post
+req / res
+handlebars
+app.get('/'... - когато някои достъпи '/' изпълни ....
