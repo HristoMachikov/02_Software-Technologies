@@ -1,5 +1,20 @@
 const Article = require('mongoose').model('Article');
 
+function checkError(req,articleProp) {
+
+    let errorMsg = '';
+
+    if(!req.isAuthenticated()){
+        errorMsg = 'You should be logged in to operate articles!'
+    } else if (!articleProp.title) {
+        errorMsg = 'Article title cannot be empty!';
+    } else if (!articleProp.content) {
+        errorMsg = 'Article content cannot be empty!';
+    }
+
+    return errorMsg;
+}
+
 module.exports = {
     createGet: (req, res) => {
         res.render('article/create')
@@ -7,15 +22,7 @@ module.exports = {
     createPost: (req, res) => {
         let articleProp = req.body;
 
-        let errorMsg = '';
-
-        if(!req.isAuthenticated()){
-            errorMsg = 'You should be logged in to make articles!'
-        } else if (!articleProp.title) {
-            errorMsg = 'Invalid title!';
-        } else if (!articleProp.content) {
-            errorMsg = 'Invalid content!';
-        }
+        let errorMsg = checkError(req,articleProp);
 
         if (errorMsg) {
             res.render ('article/create', {error: errorMsg});
@@ -38,7 +45,94 @@ module.exports = {
         let id = req.params.id;
 
         Article.findById(id).populate('author').then(article => {
-            res.render('article/details', article)
+            if (!req.user){
+                res.render('article/details', {article: article, isUserAuthorized: false});
+                return;
+            }
+
+            req.user.isInRole('Admin').then(isAdmin => {
+                let isUserAuthorized = isAdmin || req.user.isAuthor(article);
+
+                res.render('article/details', {article: article, isUserAuthorized: isUserAuthorized});
+            });
         });
+    },
+    editGet: (req,res) => {
+            let id = req.params.id;
+
+            if (!req.isAuthenticated()) {
+                let returnUrl = `/article/edit/${id}`;
+                req.session.returnUrl = returnUrl;
+
+                res.redirect('/user/login');
+                return;
+            }
+
+            Article.findById(id).then(article => {
+                req.user.isInRole('Admin').then(isAdmin => {
+                    if (!isAdmin && !req.user.isAuthor(article)) {
+                        res.redirect('/');
+                        return;
+                    }
+
+                    res.render('article/edit', article)
+                });
+            });
+    },
+    editPost: (req, res) => {
+        let id = req.params.id;
+        let articleProp = req.body;
+
+        let errorMsg = checkError(req,articleProp);
+
+        if (errorMsg) {
+            res.render ('article/edit', {error: errorMsg});
+            return;
+        }
+
+        Article.update({_id: id}, {$set: {title: articleProp.title, content: articleProp.content}})
+            .then(updateStatus => {
+                res.redirect(`/article/details/${id}`);
+            })
+    },
+    deleteGet: (req, res) => {
+        let id = req.params.id;
+
+        if (!req.isAuthenticated()) {
+            let returnUrl = `/article/delete/${id}`;
+            req.session.returnUrl = returnUrl;
+
+            res.redirect('/user/login');
+            return;
+        }
+
+        Article.findById(id).then(article => {
+            req.user.isInRole('Admin').then(isAdmin => {
+                if (!isAdmin && !req.user.isAuthor(article)) {
+                    res.redirect('/');
+                    return;
+                }
+
+                res.render('article/delete', article)
+            });
+        });
+    },
+    deletePost: (req,res) => {
+        let id = req.params.id;
+        Article.findOneAndRemove({_id: id}).populate('author').then(currentArticle => {
+            let author = currentArticle.author;
+
+            let index = author.articles.indexOf(currentArticle.id);
+
+            if (index >= 0){
+                author.articles.splice(index, 1);
+                author.save().then((user) => {
+                    res.redirect('/')
+                });
+            } else {
+                let errorMsg = 'Article was not found for that author!';
+                res.render('article/delete', {error: errorMsg})
+            }
+        })
     }
 };

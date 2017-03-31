@@ -1,0 +1,4 @@
+.hbs - handle bars -> view engine
+
+/article/edit/:id - :->parameter
+Article.update({condition}, {action})
