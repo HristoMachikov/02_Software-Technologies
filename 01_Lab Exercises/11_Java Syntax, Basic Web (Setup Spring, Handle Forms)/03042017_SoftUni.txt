@@ -1,0 +1,9 @@
+Alt + Insert -> get, set
+
+Hash set - показва ги сортирани , но не се запазват сортирани;
+Tree set - показва ги сортирани и се запазват сортирани;
+
+
+http://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
+
+https://github.com/vonrepiks/Java/blob/master/Java%20Basics%20Exercises/src/main/java/MatrixofPalindromes.java

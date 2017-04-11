@@ -29,6 +29,41 @@ module.exports = {
             return;
         }
 
+        // Insert, save in base and set multiply image files
+        let images = req.files.images;
+
+        if (images) {
+            for (let image of images) {
+                let filename = image.name;
+                image.mv(`./public/images/${filename}`, err => {
+                    if (err) {
+                        console.log(err.message);
+                    }
+                });
+            }
+
+            let imageArray = [];
+            for (let image of images) {
+                imageArray.push(`/images/${image.name}`);
+            }
+
+            articleProp.pathImage = imageArray;
+        }
+
+        // Insert, save in base and set pdf file
+        let pdf = req.files.pdf;
+
+        if (pdf) {
+            let pdfname = pdf.name;
+            pdf.mv(`./public/pdf/${pdfname}`, err => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+
+            articleProp.pathPdf = `/pdf/${pdfname}`;
+        }
+
         articleProp.author = req.user.id;
         Article.create(articleProp).then(article => {
             req.user.articles.push(article.id);

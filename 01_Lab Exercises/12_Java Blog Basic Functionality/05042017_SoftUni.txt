@@ -1,0 +1,11 @@
+IDENTITY - generira poredno ID
+columndefinition = "text" - za da osiguri pisane na dylag text
+extends - nasledqva
+@Autowired - awtomatichno prawi wryzkata
+PreAutorised(isAltanticated()) User - Lognat user
+set - zapigwa stoinosta
+get - wzima stoinosta
+
+@Transient - tova pole ne otiva v bazata
+
+A4B5TQ - IvanIvanov GitHub
