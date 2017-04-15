@@ -1,0 +1,24 @@
+Ctrl + .
+ApplicationDBContext - class koito prawi vryzka s bazata danni.
+
+var db = new ApplicationDBContext()
+
+
+Predi da se syzdade entity v bazata se pravi migraciq.
+14.55 - 
+15.55 - nastroiki na migraciqta (Global)
+V konzolata - PM> enable-migrations
+AutomaticMigrationEnabled = true;
+
+Metodite vryshtat vmesto Void - ActoinResult
+Void - > ActoinResult
+
+V fail RountConfig e zadaden formata na routa
+
+ModelState.IsValid - Validaciq idvashta ot MVC-to
+
+@Html.ValidationSummary() - vizualizira greshkite koito user-a e nampravil
+(a
+
+Html.ActoinLinc("Crate Car","Create","Car")
+(Name, ActionResult, Controler)
